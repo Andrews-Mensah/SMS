@@ -2,19 +2,25 @@ package school.management.system.sms.student;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/v1")
 @AllArgsConstructor
 public class StudentRegistrationController {
 
 
     private StudentRegistrationService registrationService;
 
+
+    @PostMapping("/registration")
     public String register (@RequestBody StudentRegistrationRequest registrationRequest){
+//        System.out.println("gvshshvshvsxvssagvasgvasgvasgsa");
         return registrationService.register(registrationRequest);
+    }
+
+    @GetMapping(path = "confirm")
+    public String confirm(@RequestParam("token") String token) {
+        return registrationService.confirmToken(token);
     }
 }
