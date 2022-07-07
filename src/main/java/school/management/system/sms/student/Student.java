@@ -17,8 +17,8 @@ import java.util.Collections;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity
-public class StudentEntity implements UserDetails {
+@Entity (name = "student")
+public class Student implements UserDetails {
 
     @Id
     private Long id;
@@ -40,13 +40,13 @@ public class StudentEntity implements UserDetails {
     private Boolean locked;
     private Boolean enabled;
 
-    public StudentEntity(String firstName,
-                         String lastName,
-                         String email,
-                         String password,
-                         Role role,
-                         Boolean locked,
-                         Boolean enabled) {
+    public Student(String firstName,
+                   String lastName,
+                   String email,
+                   String password,
+                   Role role,
+                   Boolean locked,
+                   Boolean enabled) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
