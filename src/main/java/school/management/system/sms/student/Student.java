@@ -90,10 +90,6 @@ public class Student implements UserDetails {
         return password;
     }
 
-
-
-
-
     @Override
     public String getUsername() {
         return email;

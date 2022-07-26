@@ -1,16 +1,19 @@
 package school.management.system.sms.student;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import school.management.system.sms.token.ConfirmationToken;
 import school.management.system.sms.token.ConfirmationTokenService;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,6 +21,8 @@ import java.util.UUID;
 @Service
 @Component
 @AllArgsConstructor
+@Transactional
+@Slf4j
 public class StudentService implements UserDetailsService {
 
     private final StudentRepository studentRepository;
@@ -60,5 +65,15 @@ public class StudentService implements UserDetailsService {
 
     public int enableStudent(String email) {
         return studentRepository.enableStudent(email);
+    }
+
+
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+
+    public Student saveStudent(Student student) {
+        return studentRepository.save(student);
     }
 }
